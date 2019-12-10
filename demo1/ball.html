@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .main {
+            width: 360px;
+            height: 640px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script src="./preloadsheet.js"></script>
+    <script>
+        /** @type {HTMLCanvasElement} */
+        /********************定义特殊变量********************/
+        var colorArr = [
+            "#FF9966",
+            "#FF6666",
+            "#99CCFF",
+            "#666633",
+            "#6699CC",
+            "#CCCCFF",
+            "#CC3399",
+            "#66CCCC",
+            "#CC0066"
+        ]
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+        var game = {
+            stageW: 360,
+            stageH: 640,
+            score: 0,
+            start: false,
+            game_over: false,
+            baifen: 0,
+            people: 0,
+            center: {
+                x: 360 / 2,
+                y: 640 / 2
+            }
+        }
+
+        canvas.width = game.stageW;
+        canvas.height = game.stageH;
+
+
+        /*创建封面两个小球*/
+        var a = {
+            r: 50,
+            maxR: 50,
+            minR: 40,
+            zoom: false,
+            color: randomColor()
+        };
+        var b = {
+            r: 30,
+            maxR: 30,
+            minR: 20,
+            zoom: false,
+            color: randomColor()
+        };
+        /*开始界面的开始按钮 的位置信息*/
+        var start_btn = {
+            name: "start_btn_png",
+            w: (game.stageW * 2) / 4,
+            h: ((file["start_btn_png"].h / file["start_btn_png"].w) * (game.stageW * 2)) / 4,
+            x: (game.stageW - (game.stageW * 2) / 4) / 2,
+            y: game.stageH / 2 + 50
+        }
+
+        /*保存游戏当前帧数*/
+        var frames;
+        /****************************************************/
+        /********************封装特殊函数*********************/
+        function randomColor() {
+            return colorArr[Math.floor(Math.random() * colorArr.length)]
+        }
+        /*绘制背景*/
+        function drawBg() {
+            ctx.fillStyle = "#cccccc";
+            ctx.fillRect(0, 0, game.stageW, game.stageH);
+        }
+        /*绘制小球*/
+        function drawCircle(x, y, r, color, fill) {
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, 2 * Math.PI);
+            ctx.closePath();
+            if (fill) {
+                ctx.fillStyle = color;
+                ctx.fill();
+            } else {
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
+        }
+        /*让封面的小球放大缩小*/
+        function updateZoom(obj) {
+            if (!obj.zoom) {
+                obj.r -= 0.3;
+                obj.zoom = obj.r <= obj.minR ? true : false;
+            } else {
+                obj.r += 0.3;
+                obj.zoom = obj.r >= obj.maxR ? false : true;
+            }
+        }
+        /*画出image的方法 可以画开始按钮与重新开始按钮*/
+        var img = new Image();
+        img.src = "./preloadsheet.png";
+
+        function drawBtn(obj) {
+            ctx.drawImage(
+                img,
+                file[obj.name].x,
+                file[obj.name].y,
+                file[obj.name].w,
+                file[obj.name].h,
+                obj.x,
+                obj.y,
+                obj.w,
+                obj.h
+            );
+        }
+        /*等待界面的两个小球 与开始按钮*/
+        function ready() {
+            updateZoom(a);
+            updateZoom(b);
+            drawCircle(game.center.x - a.minR + 15, game.center.y - a.maxR, a.r, a.color, true);
+            drawCircle(game.center.x + b.minR + 5, game.center.y - b.maxR, b.r, b.color, true);
+            drawBtn(start_btn);
+        }
+        /*点击开始按钮*/
+        canvas.onclick = function (event) {
+            var xCrash = event.offsetX >= start_btn.x && event.offsetX <= start_btn.x + start_btn.w;
+            var yCrash = event.offsetY >= start_btn.y && event.offsetY <= start_btn.y + start_btn.h;
+            var xagain = event.offsetX >= again_btn.x && event.offsetX <= again_btn.x + again_btn.w;
+            var yagain = event.offsetY >= again_btn.y && event.offsetY <= again_btn.y + again_btn.h;
+            if (xCrash && yCrash) {
+                game.start = true;
+            }
+
+            if (Math.abs(event.offsetX - game.center.x) < 5 && Math.abs(event.offsetY - game.center.y) < 5) {
+                canvas.onmousemove = function (event) {
+                    o.x = event.offsetX;
+                    o.y = event.offsetY;
+                }
+            }
+            if (game.game_over == true && xagain && yagain) {
+                console.log(game.game_over);
+                o = new OurBoll();
+                game.game_over = false;
+                game.score = 0;
+                game.start = false;
+                segements = [];
+                starts();
+            }
+
+        }
+        /****************************************************/
+        /********************游戏开始后变量*******************/
+        /*创建我方小球*/
+        var o = new OurBoll();
+        //敌方小球的存放数组
+        var segements = [];
+        //小球的移动速度
+        var bollspeed = 3;
+        var frames = 0;
+        //结束界面重开按钮
+        var again_btn = {
+            name: "again_btn_png",
+            w: (game.stageW * 2) / 4,
+            h: ((file["again_btn_png"].h / file["again_btn_png"].w) * (game.stageW * 2)) / 4,
+            x: (game.stageW - (game.stageW * 2) / 4) / 2,
+            y: game.stageH / 2 + 50
+        }
+
+        var balance_base_bg_png = {
+            name: "balance_base_bg_png",
+            w: game.stageW,
+            h: ((file["balance_base_bg_png"].h / file["balance_base_bg_png"].w) * (game.stageW)),
+            x: 0,
+            y: 50
+        }
+
+        /****************************************************/
+        /**********************游戏开始后*********************/
+        //随机数生成器 从数字m到n的随机数
+        function randomNum(m, n) {
+            return Math.round(Math.random() * (n - m)) + m;
+        }
+
+        function randomFloor(m, n) {
+            return Math.random() * (n - m) + m;
+        }
+        //敌方球构造器
+        function Boll(m, n) {
+            this.r = randomNum(m, n);
+            this.color = randomColor();
+            this.over = false;
+        }
+        /*我放小球构造器*/
+        function OurBoll() {
+            this.x = game.center.x;
+            this.y = game.center.y;
+            this.r = 5;
+            this.color = "#333333";
+            this.loop = {
+                r: this.r,
+                minR: this.r,
+                maxR: this.r + 10,
+                color: randomColor(),
+                zoom: true
+            }
+        }
+        //敌方小球出生点
+        Boll.prototype.generateCoord = function () {
+            var num = randomNum(0, 3);
+            switch (num) {
+
+                case 0:
+                    //上方
+                    this.x = randomNum(-this.r, game.stageW + this.r);
+                    this.y = -this.r;
+                    break;
+
+                case 1:
+                    //左方
+                    this.x = -this.r;
+                    this.y = randomNum(-this.r, game.stageH + this.r);
+                    break;
+
+                case 2:
+                    //下方
+                    this.x = randomNum(-this.r, game.stageW + this.r);
+                    this.y = game.stageH + this.r;
+                    break;
+
+                case 3:
+                    //右方
+                    this.x = game.stageW + this.r;
+                    this.y = randomNum(-this.r, game.stageW + this.r);
+                    break;
+            }
+        }
+        //敌方小球移动方向与速度
+        Boll.prototype.generateSpeed = function () {
+            //在左边的小球
+            if (this.x > game.stageW) {
+                this.sx = -randomFloor(0, bollspeed);
+                this.sy = randomFloor(-bollspeed, bollspeed);
+            }
+            //在右边的小球
+            if (this.x < 0) {
+                this.sx = randomFloor(0, bollspeed);
+                this.sy = randomFloor(-bollspeed, bollspeed);
+            }
+            //在下边的小球
+            if (this.y > game.stageH) {
+                this.sy = -randomFloor(0, bollspeed);
+                this.sx = randomFloor(-bollspeed, bollspeed);
+            }
+            //在上边的小球
+            if (this.y < 0) {
+                this.sy = randomFloor(0, bollspeed);
+                this.sx = randomFloor(-bollspeed, bollspeed);
+            }
+        }
+        //让敌方小球进行移动
+        Boll.prototype.move = function () {
+            this.x = this.x + this.sx;
+            this.y = this.y + this.sy;
+        }
+        //创建一个完整的敌方小球
+        function generate() {
+            var newBoll = new Boll(o.r - 4, o.r + 10);
+            newBoll.generateCoord();
+            newBoll.generateSpeed();
+            segements.push(newBoll);
+        }
+        //检测小球碰撞
+        function checkCrash(boll) {
+            var s = Math.sqrt((boll.x - o.x) * (boll.x - o.x) + (boll.y - o.y) * (boll.y - o.y));
+            if (s < boll.r + o.r && !boll.over) {
+                return true;
+            }
+        }
+        //检测小球超出
+        Boll.prototype.checkOver = function () {
+            var rightOver = this.x > game.stageW + this.r;
+            var leftOver = this.x < -this.r;
+            var bottomOver = this.y > game.stageH + this.r;
+            var topOver = this.y < -this.r;
+            this.over = rightOver || leftOver || topOver || bottomOver;
+        }
+        //游戏开始的主函数
+        function start() {
+            frames++;
+            updateZoom(o.loop);
+
+            drawCircle(o.x, o.y, o.r, o.color, true);
+            drawCircle(o.x, o.y, o.loop.r, o.loop.color, false)
+            if (!(frames % 10)) {
+                generate();
+            }
+            segements.forEach(function (boll, index) {
+                boll.move();
+                drawCircle(boll.x, boll.y, boll.r, boll.color, true);
+                if (checkCrash(boll)) {
+                    if (boll.r > o.r) {
+                        gameover();
+                    } else {
+                        boll.die = true;
+                        var addR = 0.5;
+                        o.r += addR;
+                        o.loop.minR += addR;
+                        o.loop.maxR += addR;
+                        game.score++;
+                    }
+                }
+                boll.checkOver();
+            })
+            segements.forEach(function (boll, index) {
+                if (boll.over || boll.die) {
+                    segements.splice(index, 1);
+                }
+            })
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "#333333"
+            ctx.fillText(game.score, 10, 50);
+        }
+        //游戏结束主要函数
+        function gameover() {
+            game.game_over = true;
+            if (localStorage.score) {
+                var oldArr = JSON.parse(localStorage.score);
+                console.log("^_^");
+
+                for (var i = 0; i < oldArr.length; i++) {
+                    //console.log("^_^2");
+                    for (key in oldArr[i]) {
+                        //console.log("^_^3");
+
+                        if (key == game.score) {
+                            oldArr[i][key]++;
+                            localStorage.score = JSON.stringify(oldArr);
+                            return;
+                        } else if (i == oldArr.length - 1) {
+                            //console.log("^_^4");
+                            var newScore = {};
+                            newScore[game.score] = 1;
+                            oldArr.push(newScore);
+                            oldArr.sort(function (a, b) {
+                                for (keya in a) {
+                                    for (keyb in b) {
+                                        return Number(keya) - Number(keyb);
+                                    }
+                                }
+                            })
+                            localStorage.score = JSON.stringify(oldArr);
+                            return;
+                        }
+
+                    }
+                }
+            } else {
+                var newScore = {};
+                newScore[game.score] = 1;
+                localStorage.score = JSON.stringify([newScore])
+            }
+
+
+        }
+
+        function grade() {
+            game.people = 0;
+            game.baifen = 0;
+            var oldArr = JSON.parse(localStorage.score);
+            for (var i = 0; i < oldArr.length; i++) {            
+                for (key in oldArr[i]) {
+                    game.people = game.people+oldArr[i][key]
+                    if (key <= game.score) {
+                        game.baifen = game.baifen+oldArr[i][key];                     
+                    }
+                }
+            }
+        }
+        /****************************************************/
+
+
+
+
+
+
+        /*游戏主体*/
+        function mains() {
+            //ctx.clearRect(0, 0, game.stafeW, game.stageH);
+            drawBg();
+            if (!game.start) {
+                ready();
+            } else {
+                start();
+            }
+            if (game.game_over) {
+                grade();
+                console.log("总人数" + game.people, "超越人数" + game.baifen);
+                drawBtn(balance_base_bg_png);
+                drawBtn(again_btn);
+                ctx.font = "25px Arial";
+                ctx.fillStyle = "#333333"
+                ctx.fillText(game.score, game.stageW / 2 - 10, balance_base_bg_png.h - 13);
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "#333333"
+                ctx.fillText(Math.round(game.baifen/game.people*100) , game.stageW / 2 +6, balance_base_bg_png.h + 48);
+                clearInterval(id);
+            }
+        }
+
+        function starts() {
+            id = setInterval("mains()", 30)
+        }
+        var id = setInterval("mains()", 30)
+    </script>
+</body>
+
+</html>

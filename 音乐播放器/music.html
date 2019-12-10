@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <audio controls class="i">
+        <source class="p" src="http://music.163.com/song/media/outer/url?id=65538.mp3">
+    </audio>
+    <div class="main">
+        <div class="music">
+            <div class="cover"><img id="ii" src="" alt=""><img src="" alt=""></div>
+            <div class="cover1"><img id="ii" src="" alt=""><img src="" alt=""></div>
+            <div class="intro">
+                <div class="volume"></div>
+                <input type="range" name="points" id="points" value="10" min="0" max="10">
+                <div class="like"></div>
+                <div class="prev"></div>
+                <div class="next"></div>
+                <div class="start"></div>
+            </div>
+            <div class="menu">
+                <div class="title">好久不见</div>
+                <div class="con">陈奕迅</div>
+            </div>
+            <div class="bars">
+                <div class="times">00 : 00</div>
+                <div class="barss">
+                    <div class="bar"></div>
+                    <div class="cir"></div>
+                    <input type="range" name="po" value="0" min="0" max="100">
+                </div>
+                <div class="time">00 : 00</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        var i = 0;
+        var button = 0;
+        var jie = 1;
+        var heart = 0;
+        var ppp = [{
+                "author": "陈奕迅",
+                "title": "好久不见",
+                "url": "http://music.163.com/song/media/outer/url?id=65538.mp3",
+                "imgs": "./images/timg.jpg"
+            },
+            {
+                "author": "暗杠",
+                "title": "童话镇",
+                "url": "http://music.163.com/song/media/outer/url?id=413829859.mp3",
+                "imgs": "./images/timg (1).jpg"
+            },
+            {
+                "author": "陈硕子",
+                "title": "亲爱的你去了何方",
+                "url": "http://music.163.com/song/media/outer/url?id=1390532238.mp3",
+                "imgs": "./images/timg (2).jpg"
+            },
+        ]
+        $(".cover img").attr('src', ppp[0].author);
+        $(".cover img").attr('src', ppp[0].title);
+        $(".cover img").attr('src', ppp[0].url);
+        $(".cover img").attr('src', ppp[0].imgs);
+        /*切换音乐*/
+        var cut = function (o) {
+            if (jie == 1) {
+                jie = 0;
+                if (o == 1) {
+                    i++;
+                    if (i > 2) {
+                        i = 0;
+                    }
+                    document.querySelector(".cover").style.animation = "myfirst 1s";
+                    $(".cover1 img").attr('src', ppp[i].imgs);
+                    document.querySelector(".cover1").style.animation = "myfirst3 1s";
+                    //$(".cover img").attr('src', ppp[i].imgs);
+                } else {
+                    i--;
+                    if (i < 0) {
+                        i = 2;
+                    }
+                    document.querySelector(".cover").style.animation = "myfirst2 1s";
+                    $(".cover1 img").attr('src', ppp[i].imgs);
+                    document.querySelector(".cover1").style.animation = "myfirst1 1s";
+                    //$(".cover img").attr('src', ppp[i].imgs);
+                }
+                setTimeout(function () {
+                    $(".cover img").attr('src', ppp[i].imgs);
+                    document.querySelector(".cover1").style.animation = "none";
+                    document.querySelector(".cover").style.animation = "none";
+                    jie = 1;
+                }, 1000)
+
+
+                document.querySelector(".p").src = ppp[i].url;
+                document.querySelector(".i").load();
+                if (button == 1) {
+                    document.querySelector(".i").play();
+                }
+
+
+                document.querySelector(".title").innerText = ppp[i].title;
+                document.querySelector(".con").innerText = ppp[i].author;
+            }
+
+        }
+        /*暂停开始判定*/
+        var star = function () {
+            if (button == 0) {
+                $(".start").css({
+                    "background-image": "url('./images/timg1.jpg')"
+                });
+                document.querySelector(".i").play();
+                button = 1;
+            } else {
+                $(".start").css({
+                    "background-image": "url('./images/timg2.jpg')"
+                });
+                document.querySelector(".i").pause();
+                button = 0;
+            }
+        }
+        /*菜单栏点击*/
+        $(".intro").children().click(function () {
+
+            $(this).addClass("active").siblings().removeClass("active");
+            //console.log($(this)[0] == $(".volume")[0]);
+            if ($(this)[0] == $(".intro input")[0]) {
+                $(".volume").addClass("active").siblings().removeClass("active");
+            }
+            if (($(this)[0] != $(".volume")[0]) && ($(this)[0] != $(".intro input")[0])) {
+                $(".intro input").css("display", "none");
+            }
+            if ($(this)[0] == $(".like")[0]) {
+                if(heart == 0){
+                    $(".like").css({ "background-position": "-2px -246px"})
+                    heart = 1;
+                }else{
+                    $(".like").css({ "background-position": "-59px -246px"})
+                    heart = 0;
+                }
+                
+            }
+
+        })
+        /*暂停点击*/
+        $(".start").click(function () {
+            star();
+        })
+        /*下一首点击*/
+        $(".next").on("click", function () {
+
+            cut(1);
+            button = 0;
+            star();
+        })
+        /*上一首点击*/
+        $(".prev").on("click", function () {
+
+            cut(0);
+            button = 0;
+            star();
+        })
+        /*音量点击*/
+        $(".volume").click(function () {
+            if (document.querySelector(".intro input").style.display != "block") {
+                $(".intro input").css("display", "block");
+            } else {
+                $(".intro input").css("display", "none");
+            }
+
+        })
+
+        $(function () {
+
+            /*实时更新滑动条内容*/
+            $('.intro input').bind('input propertychange', function () {
+                document.querySelector(".i").volume = $(".intro input")[0].valueAsNumber / 10;
+
+            });
+            /*实时更新滑动条内容*/
+            $('.barss input').bind('input propertychange', function () {
+                $(".intro").children().removeClass("active");
+                $(".intro input").css("display", "none");
+                document.querySelector(".i").currentTime = $(".barss input")[0].valueAsNumber / 100 *
+                    document.querySelector(".i").duration;
+                $(".cir").css("left", ($(".barss input")[0].valueAsNumber * 0.97) + "%")
+                document.querySelector(".bar").style.width = (document.querySelector(".i").currentTime /
+                    document.querySelector(".i").duration) * 98 + 2 + "%";
+            });
+            /*实时更新进度条*/
+            $('.i').bind('timeupdate', function () {
+                if (parseInt(document.querySelector(".i").currentTime % 60) < 10) {
+                    document.querySelector(".time").innerText = "0" + parseInt(document.querySelector(
+                        ".i").currentTime / 60) + " : 0" + parseInt(document.querySelector(".i")
+                        .currentTime % 60);
+                } else {
+                    document.querySelector(".time").innerText = "0" + parseInt(document.querySelector(
+                        ".i").currentTime / 60) + " : " + parseInt(document.querySelector(".i")
+                        .currentTime % 60);
+                }
+                if (parseInt(document.querySelector(".i").duration % 60) < 10) {
+                    document.querySelector(".times").innerText = parseInt(document.querySelector(".i")
+                        .duration / 60) + " : 0" + parseInt(document.querySelector(".i").duration %
+                        60);
+                } else {
+                    document.querySelector(".times").innerText = parseInt(document.querySelector(".i")
+                        .duration / 60) + " : " + parseInt(document.querySelector(".i").duration %
+                        60);
+                }
+
+                $(".barss input")[0].valueAsNumber = (document.querySelector(".i").currentTime /
+                    document.querySelector(".i").duration) * 100;
+
+                document.querySelector(".bar").style.width = (document.querySelector(".i").currentTime /
+                    document.querySelector(".i").duration) * 98 + 2 + "%";
+
+                $(".cir").css("left", (document.querySelector(".i").currentTime / document
+                    .querySelector(".i").duration) * 97 + "%");
+
+
+                if (document.querySelector(".i").ended) {
+                    cut(1);
+                }
+            });
+
+        })
+    </script>
+
+</body>
+
+</html>
