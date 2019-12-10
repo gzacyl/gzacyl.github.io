@@ -1,0 +1,115 @@
+body {
+    width: 100%;
+    margin: 0;
+
+    .main {
+        margin: 0 auto;
+        height: 800px;
+        width: 600px;
+        background-image: url(./img/bg.jpg);
+        background-size: cover;
+
+
+        .title {
+            .level {
+                float: left;
+
+                div {
+                    float: left;
+                    margin: 10px 5px;
+                }
+
+                .one {
+                    width: 40px;
+                    height: 36px;
+                    background-size: cover;
+                    background-image: url(./img/level_icon_1_active.png);
+                }
+
+                .two {
+                    width: 40px;
+                    height: 36px;
+                    background-size: cover;
+                    background-image: url(./img/level_icon_2.png);
+                }
+
+                .three {
+                    width: 40px;
+                    height: 36px;
+                    background-size: cover;
+                    background-image: url(./img/level_icon_3.png);
+                }
+            }
+
+            .time {
+                background-image: url(./img/timebox_bg.png);
+                width: 50px;
+                line-height: 50px;
+                background-size: cover;
+                float: right;
+                margin: 10px 5px;
+                color: aliceblue;
+                font-size: 20px;
+                text-align: center;
+
+            }
+
+            &:after {
+                content: '';
+                clear: both;
+                display: block;
+            }
+        }
+
+        .target {
+            width: 250px;
+            height: 250px;
+            background-image: url(./img/CircleCenter_1.png);
+            background-size: cover;
+            margin-top: 10%;
+            margin-left: calc(50% - 125px);
+            //transition: 2s linear;
+            position: relative;
+            z-index: 5;
+        }
+
+        .lipstick {
+            position: relative;
+
+            img {
+                position: absolute;
+                width: 22px;
+                height: 82px;
+                margin-left: calc(50% - 11px);
+                transform-origin: center -98px;
+                //transition:2s linear;
+            }
+        }
+
+        .amount {
+            position: absolute;
+            bottom: 8%;
+            left: 35%;
+
+            div {
+                margin: 6px 0;
+                width: 45px;
+                height: 10px;
+                background-image: url(./img/Sword_small_1.png);
+                background-size: cover;
+            }
+
+        }
+
+        .levels {
+            position: absolute;
+            top: 0;
+            z-index: 6;
+            height: 800px;
+            width: 600px;
+            background-image: url(./img/level_1_main.jpg);
+            background-size: cover;
+        }
+    }
+
+}

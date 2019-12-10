@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <div class="level">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+            <div class="time"></div>
+        </div>
+        <div class="target"></div>
+        <div class="lipstick">
+
+        </div>
+        <div class="amount">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="levels"></div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    var lip = {
+        path: "./img/Lipstick_1.png",
+        w: 22,
+        h: 82,
+        speed: -4,
+        stop: 1,
+        ooo: 0,
+    };
+    let leee = 1;
+    let bull = [];
+    let zhen = 0;
+    let w;
+
+    function randomNum(m, n) {
+        return Math.round(Math.random() * (n - m)) + m;
+    }
+    class lips {
+        constructor(type, y) {
+            this.y = y
+            this.path = type.path;
+            this.s = type.speed;
+            this.stop = type.stop;
+            this.angle;
+        }
+        // 根据 元素自身的位置信息 更新视图
+        updataView() {
+            this.node.style.top = this.y + "px";
+        }
+        //口红移动
+        move() {
+            this.y += this.s;
+            this.updataView();
+            // this.y = -30;
+            // this.updataView();
+        }
+        // 创建节点 画出某个元素
+        draw() {
+            this.node = document.createElement("img");
+            this.node.src = this.path;
+            document.querySelector(".lipstick").appendChild(this.node);
+
+            this.updataView();
+        }
+    }
+    //创建新的口红
+    var newli
+    let create = function () {
+        newli = new lips(lip, 300);
+        newli.draw();
+
+    }
+    //倒计时
+    function stop() {
+        w.terminate();
+        w = undefined;
+
+    }
+
+    function satat() {
+
+
+        w = new Worker("./demo_workers.js");
+        w.onmessage = function (event) {
+            document.querySelector(".time").innerHTML = event.data;
+            // if (event.data == 0) {
+
+            //     window.alert("游戏失败");
+            //     stop();
+            //     window.location.reload();
+
+            // }
+        };
+    }
+
+
+    // satat()
+
+
+    //口红的数量
+    var iam = 0;
+    var x = 0;
+    var result = 0;
+    //数组的下标
+    let bullle = 0;
+
+    var xxxx = setInterval(function () {
+        //靶子旋转
+        if (x < result) {
+            x++;
+        }
+        if (x > result) {
+            x--;
+        }
+
+        if (x == result) {
+            result = randomNum(200, 2000)
+        }
+        $(".target").css("transform", "rotate(" + x + "deg)");
+
+
+
+        // if (bullle < bull.length) {
+        //     console.log("^_^");
+
+        //     bulle++;
+        //     if ((bull.length > 0) && (bull[bulle].stop == 0)) {
+        //         var lalala = bull[bulle].angle + x
+        //         //console.log("^_^"+lalala);
+        //         $("img").eq(i).css("transform", "rotate(" + lalala + "deg)");
+        //     }
+        // }else{
+        //     bulle = 0;
+        // }
+
+
+
+        //符合条件的进行移动
+        if (bull.length > 0 && bull[bull.length - 1].y >= -25) {
+            bull[bull.length - 1].move();
+        }
+        if (bull.length > 0 && newli.node.style.top == "-28px") {
+            bull[bull.length - 1].stop = 0;
+            if (x % 360 < 180) {
+                bull[bull.length - 1].angle = -x % 180;
+            }
+            if (x % 360 >= 180) {
+                bull[bull.length - 1].angle = 180 - x % 180;
+            }
+            // if (x % 360 == 180) {
+            //     bull[bull.length - 1].angle = x;
+            // }
+
+            //console.log(x);
+            //console.log(bull[bull.length - 1].angle);
+
+        }
+        for (let i = 0; i < bull.length; i++) {
+            //console.log("^_^");
+            if ((bull.length > 0) && (bull[i].stop == 0)) {
+                var lalala = bull[i].angle + x
+                //console.log("^_^"+lalala);
+                $("img").eq(i).css("transform", "rotate(" + lalala + "deg)");
+            }
+        }
+
+
+        // 符合条件的创建新的口红
+        if (((bull.length > 0) && (newli.node.style.top == "-28px")) || ($(".lipstick").children().length ==
+                0)) {
+
+            create();
+
+
+        }
+
+
+        //游戏结束
+
+        if (bullle == bull.length - 1) {
+            bullle = 0;
+        }
+        if (bull.length > 1) {
+            console.log(bull.length - 1, bullle, Math.abs(bull[bull.length - 1].angle - bull[bullle].angle));
+        }
+        if (bull.length > 1 && (Math.abs(bull[bull.length - 1].angle - bull[bullle++].angle) < 7)) {
+            window.alert("游戏失败!!!!");
+            stop();
+            window.location.reload();
+            clearInterval(xxxx);
+        }
+        if ((bull.length == 7) && (bull[6].y == -28)) {
+            iam = 0;
+            bull = [];
+            leee++;
+            bullle = 0;
+            $(".lipstick").empty();
+            if (leee == 2) {
+                $(".levels").css({
+                    display: "block",
+                    "background-image": "url(./img/level_2_mains.jpg)"
+                })
+                $(".two").css({
+                    "background-image": "url(./img/level_icon_2_active.png)"
+                })
+                $(".target").css({
+                    "background-image": "url(./img/CircleCenter_2.png)"
+                })
+                $(".amount").children().css({
+                    "background-image": " url(./img/Sword_small_2.png)"
+                })
+                lip.path = "./img/Lipstick_2.png";
+            }
+            if (leee == 3) {
+                $(".levels").css({
+                    display: "block",
+                    "background-image": "url(./img/level_3_mains.jpg)"
+                })
+                $(".three").css({
+                    "background-image": "url(./img/level_icon_3_active.png)"
+                })
+                $(".target").css({
+                    "background-image": "url(./img/CircleCenter_3.png)"
+                })
+                $(".amount").children().css({
+                    "background-image": " url(./img/Sword_small_3.png)"
+                })
+                lip.path = "./img/Lipstick_3.png";
+            }
+            if (leee == 4) {
+                window.alert("恭喜游戏通关");
+                window.location.reload();
+            }
+            //多线程
+
+            stop()
+
+        }
+    }, 1)
+
+
+
+    $(".levels").click(function () {
+        satat()
+    })
+
+    $(".main").click(function () {
+        //create();
+        $(".levels").css({
+            display: "none"
+        })
+
+
+        //$(".lipstick").css("top", "44%")
+
+    })
+    $(".lipstick").click(function () {
+        bull.push(newli);
+
+
+        $(".amount").children().eq(iam++).css({
+            "background-image": " url(./img/Sword_small_1_gray.png)"
+        })
+    })
+</script>
+
+</html>

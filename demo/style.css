@@ -1,0 +1,93 @@
+body {
+  width: 100%;
+  margin: 0;
+}
+body .main {
+  margin: 0 auto;
+  height: 800px;
+  width: 600px;
+  background-image: url(img/bg.jpg);
+  background-size: cover;
+}
+body .main .title .level {
+  float: left;
+}
+body .main .title .level div {
+  float: left;
+  margin: 10px 5px;
+}
+body .main .title .level .one {
+  width: 40px;
+  height: 36px;
+  background-size: cover;
+  background-image: url(img/level_icon_1_active.png);
+}
+body .main .title .level .two {
+  width: 40px;
+  height: 36px;
+  background-size: cover;
+  background-image: url(img/level_icon_2.png);
+}
+body .main .title .level .three {
+  width: 40px;
+  height: 36px;
+  background-size: cover;
+  background-image: url(img/level_icon_3.png);
+}
+body .main .title .time {
+  background-image: url(img/timebox_bg.png);
+  width: 50px;
+  line-height: 50px;
+  background-size: cover;
+  float: right;
+  margin: 10px 5px;
+  color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+}
+body .main .title:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+body .main .target {
+  width: 250px;
+  height: 250px;
+  background-image: url(img/CircleCenter_1.png);
+  background-size: cover;
+  margin-top: 10%;
+  margin-left: calc(50% - 125px);
+  position: relative;
+  z-index: 5;
+}
+body .main .lipstick {
+  position: relative;
+}
+body .main .lipstick img {
+  position: absolute;
+  width: 22px;
+  height: 82px;
+  margin-left: calc(50% - 11px);
+  transform-origin: center -98px;
+}
+body .main .amount {
+  position: absolute;
+  bottom: 8%;
+  left: 35%;
+}
+body .main .amount div {
+  margin: 6px 0;
+  width: 45px;
+  height: 10px;
+  background-image: url(img/Sword_small_1.png);
+  background-size: cover;
+}
+body .main .levels {
+  position: absolute;
+  top: 0;
+  z-index: 6;
+  height: 800px;
+  width: 600px;
+  background-image: url(img/level_1_main.jpg);
+  background-size: cover;
+}
