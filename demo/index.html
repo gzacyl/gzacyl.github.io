@@ -10,30 +10,33 @@
 </head>
 
 <body>
-    <div class="main">
-        <div class="title">
-            <div class="level">
-                <div class="one"></div>
-                <div class="two"></div>
-                <div class="three"></div>
+    <div>
+        <div class="main">
+            <div class="title">
+                <div class="level">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                </div>
+                <div class="time"></div>
             </div>
-            <div class="time"></div>
-        </div>
-        <div class="target"></div>
-        <div class="lipstick">
+            <div class="target"></div>
+            <div class="lipstick">
 
+            </div>
+            <div class="amount">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="levels"></div>
         </div>
-        <div class="amount">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="levels"></div>
     </div>
+
 </body>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -84,7 +87,7 @@
     //创建新的口红
     var newli
     let create = function () {
-        newli = new lips(lip, 300);
+        newli = new lips(lip, 200);
         newli.draw();
 
     }

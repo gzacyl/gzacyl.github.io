@@ -1,13 +1,15 @@
 body {
   width: 100%;
+  height: 100%;
   margin: 0;
 }
 body .main {
   margin: 0 auto;
-  height: 800px;
+  height: 700px;
   width: 600px;
   background-image: url(img/bg.jpg);
   background-size: cover;
+  position: relative;
 }
 body .main .title .level {
   float: left;
@@ -72,11 +74,11 @@ body .main .lipstick img {
 }
 body .main .amount {
   position: absolute;
-  bottom: 8%;
-  left: 35%;
+  bottom: 5%;
+  left: 30%;
 }
 body .main .amount div {
-  margin: 6px 0;
+  margin: 15% 0;
   width: 45px;
   height: 10px;
   background-image: url(img/Sword_small_1.png);
