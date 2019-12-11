@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="img">
+            <ul style="transform: rotateX(-8deg) rotateY(0deg)">
+                <li ><div style="background-image:url('./images/1.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/2.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/3.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/4.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/5.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/6.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/7.jpg')"></div></li>
+                <li ><div style="background-image:url('./images/8.jpg')"></div></li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        var i = 0;
+        var p =1;
+        $("html").mousedown(function () {
+            var x = event.pageX;
+            $("html").mousemove(function () {
+
+                var z = x - event.pageX;
+                
+                if (z > 600&&p==1) {
+                    p=0;
+                    i--;
+                } else if (z < -600&&p==1) {
+                    p=0;
+                    i++;
+                }
+                document.querySelector("ul").style.transform = "rotateX(-8deg) rotateY(" +i*45+"deg) ";
+                //$("li").eq(i%8).children().css({transform:"scale(1)",opacity:"0.7"})
+                //$("li").eq(i%8).children().addClass("active")
+                setTimeout(function () {
+                    $("li").eq(i%8).children().css({transform:"scale(1.5)",opacity:"1"})
+                }, 2000);
+                $("li").eq(i%8).children().end().siblings().children().css({transform:"scale(1)",opacity:"0.7"})
+            })
+        })
+        $("html").mouseup(function () {
+            $("html").off('mousemove');
+            
+            //$("li").eq(i%8).children().css({transform:"scale(1.5)",opacity:"1"})
+            //$("li").eq(i%8+1).children().addClass("active1")
+            //$("li").eq(i%8+1).children().end().siblings().children().removeClass("active1")
+            p=1;
+        })
+    </script>
+</body>
+
+</html>
