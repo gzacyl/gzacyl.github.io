@@ -1,15 +1,10 @@
 # 项目展示
 
-- html+css+js
-- JavaScript
-- jQuery
-- BootStrap
-- CSS3
-- HTML5
-  - [Canvas+ES6 球球大作战](findindex.github.io/boll)
-  - wewew
-  - etrtrtr
-- VUE.js
-- react.js
-- 小程序
-- node.js
+
+
+- JQ+C3+ES6
+  - [见缝插针小游戏](https://gzacyl.github.io/demo)
+- CANVAS
+  - [球球大作战](https://gzacyl.github.io/demo1)
+- H5+CSS3
+  - [音乐播放器](https://gzacyl.github.io/demo2)
