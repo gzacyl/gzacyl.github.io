@@ -7,14 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {
-            background-image: url("./timg.jpg");
+        html,body {
+            background: #777;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 100%;
+            height:500px;
+            background-image: url("./main.jpg");
             background-size: cover;
         }
 
-        h1,
-        h2 {
+        h1{
+            margin: 0;
+            font-size: 40px;
+            line-height:501px;
             text-align: center;
+            background: rgba(0, 0, 0, 0) linear-gradient(transparent, #777) repeat scroll 0 0;
+        }
+        h2 {
+            text-align: center ;
         }
 
         h4 {
@@ -39,7 +53,10 @@
 </head>
 
 <body>
-    <h1>大侠的项目网站</h1>
+    <div class="main">
+        <h1>大侠的项目网站</h1>
+    </div>
+
     <h2>传统网页</h2>
     <table>
         <tr>
