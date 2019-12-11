@@ -1,0 +1,657 @@
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+}
+body .one {
+  margin: 0;
+}
+body .one .menus {
+  padding: 16px 8px;
+}
+body .one .menus .logo a {
+  font-family: "Srisakdi", cursive;
+  color: #fc427b;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
+}
+body .one .menus .menu ul li a {
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #4c4c4c;
+  font-size: 15px;
+}
+body .one .menus .menu ul li a.active {
+  color: #fc427b;
+}
+body .one .menus .menu ul li a:hover {
+  color: #fc427b;
+}
+body div.two .imgs div.item {
+  height: 340px;
+  background-size: cover;
+  background-position: center;
+  text-align: right;
+}
+body div.two .imgs div.item .img {
+  margin-top: 14.5vw;
+}
+body div.two .imgs div.item .img h5 {
+  font-weight: 400;
+  color: #000;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+body div.two .imgs div.item .img a {
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid #fff;
+  background: #FC427B;
+}
+body div.two .imgs div.item .img h3 {
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 1.8em;
+  text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
+}
+body div.two .imgs div.item:nth-child(1) {
+  background-image: url(images/2.jpg);
+}
+body div.two .imgs div.item:nth-child(2) {
+  background-image: url(images/1.jpg);
+}
+body div.two .imgs div.item:nth-child(3) {
+  background-image: url(images/4.jpg);
+}
+body div.three {
+  padding-top: 48px;
+}
+body div.three .welcome .our {
+  padding: 0px 15px;
+}
+body div.three .welcome .our h3 {
+  color: inherit;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 28px;
+  text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
+}
+body div.three .welcome .our h4 {
+  color: #464646;
+  font-size: 22px;
+  font-family: initial;
+  letter-spacing: 1px;
+  font-style: italic;
+  margin: 16px 0 48px 0;
+}
+body div.three .welcome .our .row div {
+  text-align: center;
+}
+body div.three .welcome .our .row div span {
+  color: #fff;
+  font-size: 30px;
+  border-radius: 50%;
+  padding: 25px;
+  background: #fc427b;
+}
+body div.three .welcome .our .row div h5 {
+  padding: 24px 0 16px 0;
+  letter-spacing: 1px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 20px;
+}
+body div.three .welcome .our .row div p {
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #999;
+  font-family: "Sintony", sans-serif;
+}
+body div.three .welcome img {
+  max-width: 100%;
+}
+body div.four {
+  background: #fc427b;
+}
+body div.four ul {
+  margin: 40px 0;
+}
+body div.four ul li {
+  text-align: center;
+}
+body div.four ul li div {
+  color: #fdfdfd;
+  margin: 30px 0;
+}
+body div.four ul li div span {
+  font-size: 30px;
+  border: #fdfdfd 2px solid;
+  border-radius: 50%;
+  padding: 25px;
+}
+body div.four ul li div h3 {
+  font-weight: 600;
+  margin: 50px 0 20px 0;
+}
+body div.four ul li div p {
+  font-weight: 300;
+  line-height: 2em;
+}
+body div.five {
+  margin-top: 48px;
+}
+body div.five h3 {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 28px;
+  color: inherit;
+  text-align: center;
+}
+body div.five h5 {
+  margin: 0 0 24px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #999;
+  font-family: 'Sintony', sans-serif;
+}
+body div.five div.row {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-bottom: 24px;
+}
+body div.five div.row div.pig {
+  position: relative;
+}
+body div.five div.row div.pig img {
+  width: 100%;
+}
+body div.five div.row div.pig div {
+  font-size: 26px;
+  color: #fff;
+  position: absolute;
+  background: #38d2fe;
+  padding: 7px 25px;
+  bottom: 0;
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 600;
+}
+body div.five div.row div.pig div span {
+  display: block;
+  font-weight: 100;
+  font-size: 16px;
+}
+body div.five div.row div.intro {
+  padding: 24px 0;
+}
+body div.five div.row div.intro h3 {
+  text-align: left;
+  font-size: 23px;
+}
+body div.five div.row div.intro h5 {
+  padding-top: 16px;
+  text-align: left;
+}
+body div.five div.row div.intro ul li {
+  color: #FC427B;
+  padding-right: 16px;
+}
+body div.five div.row div.intro ul li span {
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  font-weight: initial;
+  color: #a7a6a6;
+  font-family: 'Sintony', sans-serif;
+}
+body div.six {
+  background: url(images/bg2.jpg);
+  background-position: top center;
+  background-size: cover;
+  height: 300px;
+}
+body div.six .container {
+  padding-top: 48px;
+}
+body div.six .container h4 {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+body div.six .container h3 {
+  margin-top: 0;
+  font-weight: 800;
+  font-size: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+body div.six .container p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #eee;
+  font-family: 'Sintony', sans-serif;
+}
+body div.seven {
+  margin-top: 48px;
+}
+body div.seven h3 {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 28px;
+  color: inherit;
+  text-align: center;
+}
+body div.seven h5 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #999;
+  font-family: 'Sintony', sans-serif;
+}
+body div.seven div.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+body div.seven div.row div {
+  padding: 5px 5px 5px 5px;
+}
+body div.seven div.row div img {
+  width: 100%;
+}
+body .gallery {
+  padding-bottom: 48px;
+}
+body .gallery .modal-body {
+  position: relative;
+}
+body .gallery .modal-body button {
+  font-size: 40px;
+}
+body .gallery .modal-body img {
+  width: 100%;
+}
+body .gallery .modal-body .next {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  background-image: url(images/nexImg.png);
+  background-size: cover;
+  height: 56px;
+  width: 28px;
+}
+body .gallery .modal-body .prev {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  background-image: url(images/preImg.png);
+  height: 56px;
+  width: 28px;
+}
+body div.eight {
+  background: url(images/bg3.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 0px 0;
+  margin: 0px 0;
+}
+body div.eight .container {
+  padding: 48px 0;
+}
+body div.eight .container h3 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+  text-align: center;
+}
+body div.eight .container p {
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #e0e0e0;
+  font-family: 'Sintony', sans-serif;
+}
+body div.eight .container form {
+  padding-top: 48px;
+}
+body div.eight .container form input {
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+body div.eight .container form div:last-child input {
+  letter-spacing: 2px;
+  background: #38d2fe;
+  font-weight: 600;
+  color: #fff;
+}
+body div.nine .container {
+  padding: 48px 0;
+}
+body div.nine .container h3 {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 28px;
+  color: inherit;
+  text-align: center;
+}
+body div.nine .container p {
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  color: #999;
+  font-family: 'Sintony', sans-serif;
+}
+body div.nine .container .row div.dog {
+  padding: 40px;
+  margin: 30px 0;
+  box-shadow: 0 0 10px 1px #e0e0e0;
+}
+body div.nine .container .row div.dog h4 {
+  font-size: 23px;
+  color: #38d2fe;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+body div.nine .container .row div.dog p {
+  text-align: left;
+  line-height: 1.3;
+  font-size: 14px;
+}
+body div.nine .container .row div.dog form {
+  margin: 0;
+}
+body div.nine .container .row div.dog input,
+body div.nine .container .row div.dog textarea {
+  padding: 11px;
+  margin: 0 0 15px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+}
+body div.nine .container .row div.dog input:last-child {
+  margin-top: 20px;
+  color: #fff;
+  background: #FC427B;
+}
+body div.ten {
+  padding: 48px 0;
+  background: #212020;
+}
+body div.ten .container ul {
+  padding: 48px 0;
+}
+body div.ten .container ul li {
+  color: #fff;
+  text-align: left;
+}
+body div.ten .container ul li p,
+body div.ten .container ul li dd {
+  color: #ababab;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  line-height: 1.9;
+  font-family: 'Sintony', sans-serif;
+  margin: 10px 0;
+}
+body div.ten .container ul li dt {
+  margin-top: 20px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+body div.ten .container ul li p,
+body div.ten .container ul li dl {
+  margin: 40px 0;
+}
+body div.ten .top {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  color: #ababab;
+  letter-spacing: 2px;
+}
+body div.ten .top a {
+  text-align: center;
+  margin: 15px 0 ;
+  color: #FC427B;
+}
+body div.ten .top .jian {
+  font-size: 25px;
+}
+@media (min-width: 768px) {
+  body .one .menus {
+    padding: 16px 8px;
+  }
+  body div.two .imgs div.item {
+    height: 500px;
+  }
+  body div.two .imgs div.item .img h5 {
+    font-size: 16px;
+  }
+  body div.two .imgs div.item .img h3 {
+    font-size: 2.5em;
+  }
+  body div.two .imgs div.item .img a {
+    padding: 11px 21px;
+  }
+  body div.three .welcome .our {
+    padding: 0px 15px;
+  }
+  body div.three .welcome .our h3 {
+    font-size: 32px;
+  }
+  body div.three .welcome .our .row div {
+    text-align: center;
+  }
+  body div.five {
+    margin-top: 58px;
+  }
+  body div.five h5 {
+    margin: 0 0 30px 0;
+  }
+  body div.five div.row {
+    padding-bottom: 30px;
+  }
+  body div.six {
+    height: 400px;
+  }
+  body div.six .container {
+    padding-top: 60px;
+  }
+  body div.six .container h4 {
+    font-size: 24px;
+  }
+  body div.six .container h3 {
+    font-size: 28px;
+  }
+  body div.six .container p {
+    font-size: 14px;
+  }
+  body div.seven {
+    margin-top: 58px;
+  }
+  body div.seven h5 {
+    margin: 0 0 15px 0;
+  }
+  body div.seven div.row div {
+    padding: 15px 15px 15px 15px;
+  }
+  body div.eight {
+    padding: 16px 0;
+    margin: 16px 0;
+  }
+}
+@media (min-width: 992px) {
+  body .one .menus {
+    padding: 16px 16px;
+  }
+  body div.two .imgs div.item {
+    height: 600px;
+  }
+  body div.two .imgs div.item .img h5 {
+    font-size: 18px;
+  }
+  body div.two .imgs div.item .img h3 {
+    font-size: 3em;
+  }
+  body div.two .imgs div.item .img a {
+    padding: 12px 22px;
+  }
+  body div.three .welcome .our {
+    padding: 16px 15px;
+  }
+  body div.three .welcome .our h3 {
+    font-size: 36px;
+  }
+  body div.three .welcome .our .row div {
+    text-align: left;
+  }
+  body div.five {
+    margin-top: 73px;
+  }
+  body div.five h5 {
+    margin: 0 0 38px 0;
+  }
+  body div.five div.row {
+    padding-bottom: 40px;
+  }
+  body div.six {
+    height: 500px;
+  }
+  body div.six .container {
+    padding-top: 80px;
+  }
+  body div.six .container h4 {
+    font-size: 25px;
+  }
+  body div.six .container h3 {
+    font-size: 30px;
+  }
+  body div.six .container p {
+    font-size: 15px;
+  }
+  body div.seven {
+    margin-top: 73px;
+  }
+  body div.seven h5 {
+    margin: 0 0 20px 0;
+  }
+  body div.seven div.row div {
+    padding: 15px 15px 15px 15px;
+  }
+  body div.eight {
+    padding: 32px 0;
+    margin: 32px 0;
+  }
+}
+@media (min-width: 1200px) {
+  body .one .menus {
+    padding: 16px 48px;
+  }
+  body div.two .imgs div.item {
+    height: 730px;
+  }
+  body div.two .imgs div.item .img h5 {
+    font-size: 22px;
+  }
+  body div.two .imgs div.item .img h3 {
+    font-size: 3.5em;
+  }
+  body div.two .imgs div.item .img a {
+    padding: 12px 22px;
+  }
+  body div.three .welcome .our {
+    padding: 48px 15px;
+  }
+  body div.three .welcome .our h3 {
+    font-size: 40px;
+  }
+  body div.three .welcome .our .row div {
+    text-align: left;
+  }
+  body div.five {
+    margin-top: 96px;
+  }
+  body div.five h5 {
+    margin: 0 0 48px 0;
+  }
+  body div.five div.row {
+    padding-bottom: 48px;
+  }
+  body div.six {
+    height: 600px;
+  }
+  body div.six .container {
+    padding-top: 96px;
+  }
+  body div.six .container h4 {
+    font-size: 26px;
+  }
+  body div.six .container h3 {
+    font-size: 32px;
+  }
+  body div.six .container p {
+    font-size: 15px;
+  }
+  body div.seven {
+    margin-top: 96px;
+  }
+  body div.seven h5 {
+    margin: 0 0 30px 0;
+  }
+  body div.seven div.row div {
+    padding: 15px 15px 15px 15px;
+  }
+  body div.eight {
+    padding: 48px 0;
+    margin: 48px 0;
+  }
+}
