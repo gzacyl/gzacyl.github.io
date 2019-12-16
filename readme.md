@@ -6,6 +6,7 @@
   - [网页设计2](https://gzacyl.github.io/demo32)
   - [响应式+网页设计3](https://gzacyl.github.io/demo33)
   - [飞机大战](https://gzacyl.github.io/demo7)
+  - [扫雷](https://gzacyl.github.io/demo8)
 - JQ+C3+ES6
   - [见缝插针小游戏](https://gzacyl.github.io/demo)
 - CANVAS
