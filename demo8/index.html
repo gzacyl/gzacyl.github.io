@@ -112,59 +112,67 @@
     }
     var zero = [];
 
-    //数字为零时候显示周围数字
+    //数字为零时候显示周围数字 或者双击显示周围数字
     function xxxx(p) {
-        if (p % 10 != 0 && p - 11 >= 0) {
+        if (p % 10 != 0 && p - 11 >= 0 && ($("li")[p - 11].innerText != '🚩')) {
             $("li")[p - 11].innerText = rank[p - 11];
+            color(p - 11);
             $("li")[p - 11].style.background = "#f1f1f1";
             if (rank[p - 11] == 0) {
                 zero.push(p - 11)
             }
         }
-        if (p - 10 >= 0) {
+        if (p - 10 >= 0 && ($("li")[p - 10].innerText != '🚩')) {
             $("li")[p - 10].innerText = rank[p - 10];
+            color(p - 10);
             $("li")[p - 10].style.background = "#f1f1f1";
             if (rank[p - 10] == 0) {
                 zero.push(p - 10)
             }
         }
-        if ((p + 1) % 10 != 0 && p - 9 >= 0) {
+        if ((p + 1) % 10 != 0 && p - 9 >= 0 && ($("li")[p - 9].innerText != '🚩')) {
             $("li")[p - 9].innerText = rank[p - 9];
+            color(p - 9);
             $("li")[p - 9].style.background = "#f1f1f1";
             if (rank[p - 9] == 0) {
                 zero.push(p - 9)
             }
         }
-        if (p % 10 != 0 && p - 1 >= 0) {
+        if (p % 10 != 0 && p - 1 >= 0 && ($("li")[p - 1].innerText != '🚩')) {
             $("li")[p - 1].innerText = rank[p - 1];
+            color(p - 1);
             $("li")[p - 1].style.background = "#f1f1f1";
             if (rank[p - 1] == 0) {
                 zero.push(p - 1)
             }
         }
-        if ((p + 1) % 10 != 0 && p + 1 < 100) {
+        if ((p + 1) % 10 != 0 && p + 1 < 100 && ($("li")[p + 1].innerText != '🚩')) {
             $("li")[p + 1].innerText = rank[p + 1];
+            color(p + 1);
             $("li")[p + 1].style.background = "#f1f1f1";
             if (rank[p + 1] == 0) {
                 zero.push(p + 1)
             }
         }
-        if (p % 10 != 0 && p + 9 < 100) {
+        if (p % 10 != 0 && p + 9 < 100 && ($("li")[p + 9].innerText != '🚩')) {
             $("li")[p + 9].innerText = rank[p + 9];
+            color(p + 9);
             $("li")[p + 9].style.background = "#f1f1f1";
             if (rank[p + 9] == 0) {
                 zero.push(p + 9)
             }
         }
-        if (p + 10 < 100) {
+        if (p + 10 < 100 && ($("li")[p + 10].innerText != '🚩')) {
             $("li")[p + 10].innerText = rank[p + 10];
+            color(p + 10);
             $("li")[p + 10].style.background = "#f1f1f1";
             if (rank[p + 10] == 0) {
                 zero.push(p + 10)
             }
         }
-        if ((p + 1) % 10 != 0 && p + 11 < 100) {
+        if ((p + 1) % 10 != 0 && p + 11 < 100 && ($("li")[p + 11].innerText != '🚩')) {
             $("li")[p + 11].innerText = rank[p + 11];
+            color(p + 11);
             $("li")[p + 11].style.background = "#f1f1f1";
             if (rank[p + 11] == 0) {
                 zero.push(p + 11)
@@ -208,7 +216,7 @@
                 o--;
             }
         }
-        console.log(zero);
+        //console.log(zero);
 
         var zeros = zero;
         zero = [];
@@ -223,7 +231,7 @@
     function yyyy() {
         let x = 0;
         for (var i = 0; i < 100; i++) {
-            if ($(".board li")[i].innerText == "") {
+            if ($(".board li")[i].innerText == "" || $(".board li")[i].innerText == "🚩") {
                 x++;
             }
         }
@@ -235,6 +243,119 @@
             $(".board li").unbind();
         }
     }
+
+    //游戏进行中点击事件
+    function aaaa() {
+        $(this)[0].innerText = rank[$(this).index()];
+        color($(this).index());
+        //console.log($(this)[0].innerText == 0);
+        $("li")[$(this).index()].style.background = "#f1f1f1"
+        if ($(this)[0].innerText == 0) {
+            xxxx($(this).index())
+        }
+
+        yyyy();
+        for (var c = 0; c < zero.length; c++) {
+            asd()
+        }
+        //color();
+    }
+    //每个数字有自己的颜色
+    function color(i) {
+
+        if (rank[i] == 1) {
+            $("li")[i].style.color = "lightskyblue";
+        }
+        if (rank[i] == 2) {
+            $("li")[i].style.color = "lightgreen";
+        }
+        if (rank[i] == 3) {
+            $("li")[i].style.color = "lightpink";
+        }
+        if (rank[i] == 4) {
+            $("li")[i].style.color = "lightsalmon";
+        }
+        if (rank[i] == 5) {
+            $("li")[i].style.color = "lightseagreen";
+        }
+        if (rank[i] == 6) {
+            $("li")[i].style.color = "lightgrey";
+        }
+        if (rank[i] == 7) {
+            $("li")[i].style.color = "lightcoral";
+        }
+        if (rank[i] == 8) {
+            $("li")[i].style.color = "red";
+        }
+        if (rank[i] == '💣') {
+            $(".over").css("display", "block");
+            $(".board li").unbind();
+        }
+
+    }
+
+    //周围旗子的数量
+    function flag(p) {
+        var x = 0;
+        if (p % 10 != 0 && p - 11 >= 0 && ($("li")[p - 11].innerText == '🚩')) {
+            x++;
+        }
+        if (p - 10 >= 0 && ($("li")[p - 10].innerText == '🚩')) {
+            x++;
+        }
+        if ((p + 1) % 10 != 0 && p - 9 >= 0 && ($("li")[p - 9].innerText == '🚩')) {
+            x++;
+        }
+        if (p % 10 != 0 && p - 1 >= 0 && ($("li")[p - 1].innerText == '🚩')) {
+            x++;
+        }
+        if ((p + 1) % 10 && p + 1 < 100 && ($("li")[p + 1].innerText == '🚩')) {
+            x++;
+        }
+        if ((p + 1) % 10 && p + 11 < 100 && ($("li")[p + 11].innerText == '🚩')) {
+            x++;
+        }
+        if (p + 10 < 100 && ($("li")[p + 10].innerText == '🚩')) {
+            x++;
+        }
+        if (p % 10 != 0 && p + 9 < 100 && ($("li")[p + 9].innerText == '🚩')) {
+            x++;
+        }
+        // if($("li")[p].innerText == x){
+        //     console.log();
+        // }
+        //console.log(x);
+
+        return x;
+    }
+
+    //左右键双击
+    function double() {
+        var x = 0;
+        var y = 0;
+        $(".board li").mousedown(function (e) {
+            var d = new Date();
+
+            if (e.button == 2) {
+                x = d.getTime();
+            }
+            if (e.button == 0) {
+                y = d.getTime();
+            }
+            //console.log(x, y);
+
+            if (($(this)[0].innerText != "") && Math.abs(x - y) < 100) {
+                //console.log($(this).index());
+                //console.log($(this)[0].innerText);
+
+                if (flag($(this).index()) == $(this)[0].innerText) {
+                    xxxx($(this).index());
+                    //color();
+                }
+            }
+        })
+    }
+
     if ($(".board li").length > 0) {
         $(".board li").mouseover(function () {
             $(this).css({
@@ -250,22 +371,31 @@
             }
 
         })
-        $(".board li").click(function () {
-            $(this)[0].innerText = rank[$(this).index()];
-            //console.log($(this)[0].innerText == 0);
-            $("li")[$(this).index()].style.background = "#f1f1f1"
-            if ($(this)[0].innerText == 0) {
-                xxxx($(this).index())
-            }
-            if ($(this)[0].innerText == '💣') {
-                $(".over").css("display", "block");
-                $(".board li").unbind();
-            }
-            yyyy();
-            for (var c = 0; c < zero.length; c++) {
-                asd()
+        //点击方格
+        $(".board li").on("click", aaaa);
+
+        //在这里你就可以自己定义事件的函数啦
+        document.oncontextmenu = function (e) {
+            e.preventDefault();
+        };
+        //右键插旗子
+        $(".board li").mouseup(function (e) {
+            if (e.button == 2) {
+                //console.log($(this));
+                if ($(this)[0].innerText == "") {
+                    $(this)[0].innerText = "🚩";
+                    $(this).off("click", aaaa);
+                } else if ($(this)[0].innerText == "🚩") {
+                    $(this)[0].innerText = "";
+                    $(this).on("click", aaaa);
+                }
+
+
             }
         })
+
+        //左右键双击
+        double();
     }
 
     $(".again").mousedown(function () {
