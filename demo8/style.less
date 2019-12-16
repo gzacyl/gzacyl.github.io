@@ -1,0 +1,90 @@
+body {
+    background: #ebdab5;
+
+    .main {
+        position: relative;
+        border: 10px solid #d5d5d5;
+        margin: 60px auto 0 auto;
+        width: 600px;
+        height: 600px;
+        background: #fff;
+        box-shadow: 0 6px 0 #bcbcbc, 0 -6px 0 #e7e7e7, 6px 0 0 #bcbcbc, -6px 0 0 #e7e7e7;
+
+        .over {
+            clear: both;
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 150px);
+            width: 300px;
+            line-height: 100px;
+            text-align: center;
+            background: #cfcfcf;
+            border: ridge 4px #dfdfdf;
+            font-size: 40px;
+            display: none;
+        }
+    }
+
+
+
+    .corner {
+        position: relative;
+
+        div {
+            position: absolute;
+            z-index: -4;
+
+            &:nth-child(1) {
+                background: #e0dfdf;
+                left: 607.2px;
+                top: -13.5px;
+            }
+
+            &:nth-child(2) {
+                background: #afafaf;
+                left: 607.2px;
+                top: 609.5px;
+            }
+
+            &:nth-child(3) {
+                background: #e0dfdf;
+                left: -15.6px;
+                top: 609.5px;
+            }
+
+            &:nth-child(4) {
+                background: #f3f3f3;
+                left: -15.7px;
+                top: -13.6px;
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-top: 4px;
+            margin-left: 4px;
+            height: 56px;
+            width: 56px;
+            background: #e0dfdf;
+            float: left;
+            box-shadow: 2px 2px 0px #c0c0c0;
+            text-align: center;
+            font-size: 30px;
+            line-height: 56px;
+        }
+    }
+
+    .again {
+        width: 200px;
+        line-height: 50px;
+        margin: 10px auto;
+        text-align: center;
+        background: #d1d0d0;
+        border: groove 2px #fffefe;
+    }
+}
