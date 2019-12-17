@@ -68,8 +68,6 @@
     //生成炸弹
     for (var p = 0; p < 10; p++) {
         bull.push(randomNum())
-
-        //$("li")[bull[p]].innerText = '💣';
         rank[bull[p]] = '💣';
     }
     //生成数字
@@ -106,15 +104,12 @@
             }
             rank[p] = x;
         }
-        // if(p-11,p-10,p-9,p-1,p+1,p+11,p+10,p+9){
-
-        // }
     }
     var zero = [];
 
     //数字为零时候显示周围数字 或者双击显示周围数字
     function xxxx(p) {
-        if (p % 10 != 0 && p - 11 >= 0 && ($("li")[p - 11].innerText != '🚩')) {
+        if (p % 10 != 0 && p - 11 >= 0 && ($("li")[p - 11].innerText == '')) {
             $("li")[p - 11].innerText = rank[p - 11];
             color(p - 11);
             $("li")[p - 11].style.background = "#f1f1f1";
@@ -122,7 +117,7 @@
                 zero.push(p - 11)
             }
         }
-        if (p - 10 >= 0 && ($("li")[p - 10].innerText != '🚩')) {
+        if (p - 10 >= 0 && ($("li")[p - 10].innerText == '')) {
             $("li")[p - 10].innerText = rank[p - 10];
             color(p - 10);
             $("li")[p - 10].style.background = "#f1f1f1";
@@ -130,7 +125,7 @@
                 zero.push(p - 10)
             }
         }
-        if ((p + 1) % 10 != 0 && p - 9 >= 0 && ($("li")[p - 9].innerText != '🚩')) {
+        if ((p + 1) % 10 != 0 && p - 9 >= 0 && ($("li")[p - 9].innerText == '')) {
             $("li")[p - 9].innerText = rank[p - 9];
             color(p - 9);
             $("li")[p - 9].style.background = "#f1f1f1";
@@ -138,7 +133,7 @@
                 zero.push(p - 9)
             }
         }
-        if (p % 10 != 0 && p - 1 >= 0 && ($("li")[p - 1].innerText != '🚩')) {
+        if (p % 10 != 0 && p - 1 >= 0 && ($("li")[p - 1].innerText == '')) {
             $("li")[p - 1].innerText = rank[p - 1];
             color(p - 1);
             $("li")[p - 1].style.background = "#f1f1f1";
@@ -146,7 +141,7 @@
                 zero.push(p - 1)
             }
         }
-        if ((p + 1) % 10 != 0 && p + 1 < 100 && ($("li")[p + 1].innerText != '🚩')) {
+        if ((p + 1) % 10 != 0 && p + 1 < 100 && ($("li")[p + 1].innerText == '')) {
             $("li")[p + 1].innerText = rank[p + 1];
             color(p + 1);
             $("li")[p + 1].style.background = "#f1f1f1";
@@ -154,7 +149,7 @@
                 zero.push(p + 1)
             }
         }
-        if (p % 10 != 0 && p + 9 < 100 && ($("li")[p + 9].innerText != '🚩')) {
+        if (p % 10 != 0 && p + 9 < 100 && ($("li")[p + 9].innerText == '')) {
             $("li")[p + 9].innerText = rank[p + 9];
             color(p + 9);
             $("li")[p + 9].style.background = "#f1f1f1";
@@ -162,7 +157,7 @@
                 zero.push(p + 9)
             }
         }
-        if (p + 10 < 100 && ($("li")[p + 10].innerText != '🚩')) {
+        if (p + 10 < 100 && ($("li")[p + 10].innerText == '')) {
             $("li")[p + 10].innerText = rank[p + 10];
             color(p + 10);
             $("li")[p + 10].style.background = "#f1f1f1";
@@ -170,7 +165,7 @@
                 zero.push(p + 10)
             }
         }
-        if ((p + 1) % 10 != 0 && p + 11 < 100 && ($("li")[p + 11].innerText != '🚩')) {
+        if ((p + 1) % 10 != 0 && p + 11 < 100 && ($("li")[p + 11].innerText == '')) {
             $("li")[p + 11].innerText = rank[p + 11];
             color(p + 11);
             $("li")[p + 11].style.background = "#f1f1f1";
@@ -193,31 +188,6 @@
                 i--;
             }
         }
-        for (var o = 0; o < zero.length; o++) {
-            if ((zero[o] - 11 >= 0) && (zero[o] + 11 < 100) && ($("li")[zero[o] - 11].innerText != "") && ($("li")[
-                    zero[o] - 10].innerText != "") && ($("li")[zero[
-                    o] - 9].innerText != "") && ($("li")[zero[o] - 1].innerText != "") && ($("li")[zero[o] + 1]
-                    .innerText != "") && ($("li")[zero[o] + 9].innerText != "") && ($("li")[zero[o] + 10]
-                    .innerText != "") && ($("li")[zero[o] + 11].innerText != "")) {
-                zero.splice(o, 1);
-                o--;
-            } else if ((zero[o] + 10 > 99) && (zero[o] + 1 < 100) && ($("li")[zero[o] - 11].innerText != "") && (
-                    $("li")[
-                        zero[o] - 10].innerText != "") && ($("li")[zero[
-                    o] - 9].innerText != "") && ($("li")[zero[o] - 1].innerText != "") && ($("li")[zero[o] + 1]
-                    .innerText != "")) {
-                zero.splice(o, 1);
-                o--;
-            } else if ((zero[o] - 1 >= 0) && (zero[o] - 10 < 0) && ($("li")[zero[o] - 1].innerText != "") && ($(
-                        "li")[zero[o] + 1]
-                    .innerText != "") && ($("li")[zero[o] + 9].innerText != "") && ($("li")[zero[o] + 10]
-                    .innerText != "") && ($("li")[zero[o] + 11].innerText != "")) {
-                zero.splice(o, 1);
-                o--;
-            }
-        }
-        //console.log(zero);
-
         var zeros = zero;
         zero = [];
         if (zeros.length > 0) {
@@ -248,19 +218,19 @@
     function aaaa() {
         $(this)[0].innerText = rank[$(this).index()];
         color($(this).index());
-        //console.log($(this)[0].innerText == 0);
         $("li")[$(this).index()].style.background = "#f1f1f1"
         if ($(this)[0].innerText == 0) {
             xxxx($(this).index())
         }
 
         yyyy();
-        for (var c = 0; c < zero.length; c++) {
+
+
+        for (var c = 0; zero.length > 0; c++) {
             asd()
         }
-        //color();
     }
-    //每个数字有自己的颜色
+    //每个数字有自己的颜色  // 并且如果是雷的话则失败
     function color(i) {
 
         if (rank[i] == 1) {
@@ -321,11 +291,6 @@
         if (p % 10 != 0 && p + 9 < 100 && ($("li")[p + 9].innerText == '🚩')) {
             x++;
         }
-        // if($("li")[p].innerText == x){
-        //     console.log();
-        // }
-        //console.log(x);
-
         return x;
     }
 
@@ -342,28 +307,28 @@
             if (e.button == 0) {
                 y = d.getTime();
             }
-            //console.log(x, y);
 
             if (($(this)[0].innerText != "") && Math.abs(x - y) < 100) {
-                //console.log($(this).index());
-                //console.log($(this)[0].innerText);
 
                 if (flag($(this).index()) == $(this)[0].innerText) {
                     xxxx($(this).index());
-                    //color();
+                }
+                yyyy();
+                for (var c = 0; zero.length > 0; c++) {
+                    asd()
                 }
             }
         })
     }
 
     if ($(".board li").length > 0) {
+        //鼠标离开与进入高亮提示
         $(".board li").mouseover(function () {
             $(this).css({
                 background: "#f1f1f1"
             })
         })
         $(".board li").mouseout(function () {
-            //console.log($(this)[0].innerText == " ");
             if ($(this)[0].innerText == "") {
                 $(this).css({
                     background: "#e0dfdf"
@@ -381,7 +346,6 @@
         //右键插旗子
         $(".board li").mouseup(function (e) {
             if (e.button == 2) {
-                //console.log($(this));
                 if ($(this)[0].innerText == "") {
                     $(this)[0].innerText = "🚩";
                     $(this).off("click", aaaa);
@@ -389,8 +353,6 @@
                     $(this)[0].innerText = "";
                     $(this).on("click", aaaa);
                 }
-
-
             }
         })
 
